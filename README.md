@@ -42,7 +42,6 @@ CLI (terminal runner)
 
 Streamlit app with a clean, interactive UI
 
-🏗️ Architecture
 User Input (need + clarifications)
         │
         ▼
@@ -74,7 +73,9 @@ User Input (need + clarifications)
  │  Finalize    │   → artifacts: final_markdown + final_json
  └──────────────┘
 
+
 📂 Project Structure
+.
 .
 ├── config.py          # Model & default config
 ├── memory.py          # Session persistence + analytics logging
@@ -85,6 +86,7 @@ User Input (need + clarifications)
 ├── tools.py           # Simulated tools (search, email, checklist)
 ├── requirements.txt   # Dependencies
 └── graph/graph.py     # (not shown here) defines LangGraph pipeline
+
 
 🚀 Getting Started
 1. Install dependencies
