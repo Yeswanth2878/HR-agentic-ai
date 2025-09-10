@@ -1,7 +1,7 @@
-Agentic HR Hiring Planner
+**Agentic HR Hiring Planner**
 
-An agentic AI application that helps HR professionals plan a startup hiring process.
-Example input:
+**An agentic AI application that helps HR professionals plan a startup hiring process.
+Example input:**
 
 I need to hire a founding engineer and a GenAI intern. Can you help?
 
@@ -17,7 +17,7 @@ Present results in structured Markdown or JSON
 
 Provide supporting artifacts like a draft approval email and simulated search results
 
-Features
+**Features**
 
 Multi-step reasoning using LangGraph with the following flow: intake → clarify → plan_roles → draft_jd → checklist → tools → finalize
 
@@ -39,7 +39,7 @@ Command Line Interface (CLI)
 
 Streamlit web application
 
-Architecture
+**Architecture**
 
 The application runs a sequence of steps through a LangGraph workflow:
 
@@ -57,7 +57,7 @@ Tools – simulate search results and create an approval email
 
 Finalize – produce artifacts such as final_markdown and final_json
 
-Project Structure
+**Project Structure**
 
 config.py – model and default configuration
 
