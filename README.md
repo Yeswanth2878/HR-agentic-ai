@@ -1,176 +1,78 @@
-# 🧭 Agentic HR Hiring Planner
+Agentic HR Hiring Planner
 
-An **agentic AI application** that helps HR professionals plan a **startup hiring process**.  
-Simply type something like:
+An agentic AI application that helps HR professionals plan a startup hiring process.
+Example input:
 
 I need to hire a founding engineer and a GenAI intern. Can you help?
 
-markdown
-Copy code
-
 The agent will then:
 
-- Ask clarifying questions (budget, skills, timeline, location, etc.)
-- Suggest **job description (JD) drafts**
-- Create a **hiring checklist / plan**
-- Present results in **structured Markdown** or **JSON**
-- Provide supporting artifacts like a draft **approval email** and simulated **search results**
+Ask clarifying questions such as budget, skills, timeline, and location
 
----
+Suggest job description drafts
 
-## ✨ Features
+Create a hiring checklist or plan
 
-- **Multi-step reasoning** via [LangGraph](https://python.langchain.com/docs/langgraph/)  
-  `intake → clarify → plan_roles → draft_jd → checklist → tools → finalize`
-- **Clarifying Q&A** to collect missing information
-- **Job Descriptions** in Markdown + JSON
-- **Hiring Checklists** with week-by-week tasks
-- **Tool integrations** (simulated Google search, email writer, checklist builder)
-- **Memory**: file-based session persistence
-- **Analytics**: CSV log of session runs
-- **Frontends**:
-  - **CLI** (terminal runner)
-  - **Streamlit app** with a clean, interactive UI
+Present results in structured Markdown or JSON
 
----
+Provide supporting artifacts like a draft approval email and simulated search results
 
-## 🏗️ Architecture
+Features
 
-User Input (need + clarifications)
-│
-▼
-┌──────────────┐
-│ Intake │ → parse request
-└──────────────┘
-▼
-┌──────────────┐
-│ Clarify │ → ask budget, skills, location, etc.
-└──────────────┘
-▼
-┌──────────────┐
-│ Plan Roles │ → build RoleSpec objects
-└──────────────┘
-▼
-┌──────────────┐
-│ Draft JD │ → generate job descriptions
-└──────────────┘
-▼
-┌──────────────┐
-│ Checklist │ → week-by-week hiring plan
-└──────────────┘
-▼
-┌──────────────┐
-│ Tools │ → search results + approval email
-└──────────────┘
-▼
-┌──────────────┐
-│ Finalize │ → artifacts: final_markdown + final_json
-└──────────────┘
+Multi-step reasoning using LangGraph with the following flow: intake → clarify → plan_roles → draft_jd → checklist → tools → finalize
 
-yaml
-Copy code
+Clarifying questions to collect missing information
 
----
+Job Descriptions generated in Markdown and JSON formats
 
-## 📂 Project Structure
+Hiring checklists with week-by-week tasks
 
-.
-├── config.py # Model & default config
-├── memory.py # Session persistence + analytics logging
-├── prompts.py # System prompt + clarifying questions
-├── run_cli.py # CLI entrypoint
-├── schemas.py # Pydantic models (RoleSpec, JD, Checklist, State)
-├── streamlit_app.py # Streamlit frontend
-├── tools.py # Simulated tools (search, email, checklist)
-├── requirements.txt # Dependencies
-└── graph/graph.py # defines LangGraph pipeline
+Tool integrations including simulated Google search, email writer, and checklist builder
 
-yaml
-Copy code
+Memory with file-based session persistence
 
----
+Analytics saved as a CSV log of session runs
 
-## 🚀 Getting Started
+Two frontends available:
 
-### 1. Install dependencies
+Command Line Interface (CLI)
 
-```bash
-pip install -r requirements.txt
-2. Run in CLI mode
-bash
-Copy code
-python run_cli.py
-Example:
+Streamlit web application
 
-vbnet
-Copy code
-(session ab12cd) Type your need, or 'answers:' to provide clarifications.
-> I need to hire a founding engineer and a GenAI intern
-... agent runs ...
-Clarifying Q’s (answer via `answers: key=value; ...`):
-- What is the total budget and comp bands per role (base/equity/bonus/intern stipend)?
-- What timeline are you targeting (weeks to first hire)?
-...
-Provide clarifications inline:
+Architecture
 
-shell
-Copy code
-> answers: budget=$200k; timeline_weeks=6; location=Remote
-3. Run in Streamlit
-bash
-Copy code
-streamlit run streamlit_app.py
-Chat Tab: enter need, clarifications, output format → click Run Agent
+The application runs a sequence of steps through a LangGraph workflow:
 
-Artifacts Tab: view simulated search results + draft approval email
+Intake – parse the request
 
-Choose Markdown for human-readable planning or JSON for structured outputs.
+Clarify – ask questions such as budget, skills, and location
 
-📊 Example Outputs
-Markdown Output
-markdown
-Copy code
-# Hiring Results
+Plan Roles – build structured role specifications
 
-## Job Descriptions
-### Founding Engineer
-...
+Draft JD – generate job descriptions
 
-## Checklist
-- [ ] (Week 1) Founding Engineer: Kickoff & define success metrics
-- [ ] (Week 2) Founding Engineer: Finalize JD & approve budget
-...
-JSON Output
-json
-Copy code
-{
-  "roles": [
-    {
-      "title": "Founding Engineer",
-      "budget_range": "$200k",
-      "location": "Remote"
-    }
-  ],
-  "jds": [...],
-  "checklist": [...]
-}
-⚙️ Tech Specs
-LangGraph ≥ 0.2.0 for multi-step reasoning
+Checklist – produce a week-by-week hiring plan
 
-Pydantic v2 for strict state modeling
+Tools – simulate search results and create an approval email
 
-Streamlit ≥ 1.36 for frontend
+Finalize – produce artifacts such as final_markdown and final_json
 
-File-based sessions (.sessions/{id}.json)
+Project Structure
 
-Analytics CSV (usage.csv) with timestamp, session id, node, tokens
+config.py – model and default configuration
 
-🔮 Roadmap
- Add real Google Search / Tavily integration
+memory.py – session persistence and analytics logging
 
- Support sending actual emails
+prompts.py – system prompt and clarifying questions
 
- Extend checklist with owners/due dates from answers
+run_cli.py – CLI entrypoint
 
- Deploy Streamlit app for remote teams
+schemas.py – Pydantic models for RoleSpec, JD, Checklist, and State
 
+streamlit_app.py – Streamlit web application
+
+tools.py – simulated tools for search, email, and checklist
+
+requirements.txt – Python dependencies
+
+graph/graph.py – defines the LangGraph pipeline
